@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, Text } from "react-native";
 import { Card } from "react-native-paper";
-import { SvgXml } from "react-native-svg"; // TODO: npx expo install react-native-svg
+import { SvgXml } from "react-native-svg";
 import styled from "styled-components/native";
 
-import open from "../../../../assets/open"; // TODO: ADD THIS
-import star from "../../../../assets/star"; // TODO: ADD THIS
+import open from "../../../../assets/open";
+import star from "../../../../assets/star";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
 const Address = styled(Text)`
