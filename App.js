@@ -15,6 +15,8 @@ import { theme } from "./src/infrastructure/theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 
+import { RestaurantsContext } from "./src/services/restaurants/restaurants.context";
+
 const TAB_ICON = {
   Restaurants: "restaurant",
   Map: "map",
@@ -63,23 +65,25 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              ...createScreenOptions({ route }),
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-              headerShown: false,
-              tabBarStyle: {
-                height: 60,
-              },
-            })}
-          >
-            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <RestaurantsContext>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={({ route }) => ({
+                ...createScreenOptions({ route }),
+                tabBarActiveTintColor: "tomato",
+                tabBarInactiveTintColor: "gray",
+                headerShown: false,
+                tabBarStyle: {
+                  height: 60,
+                },
+              })}
+            >
+              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContext>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
