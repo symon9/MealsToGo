@@ -15,7 +15,7 @@ import { theme } from "./src/infrastructure/theme";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 
-import { RestaurantsContext } from "./src/services/restaurants/restaurants.context";
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 
 const TAB_ICON = {
   Restaurants: "restaurant",
@@ -65,7 +65,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContext>
+        <RestaurantsContextProvider>
           <NavigationContainer>
             <Tab.Navigator
               screenOptions={({ route }) => ({
@@ -83,7 +83,7 @@ export default function App() {
               <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
           </NavigationContainer>
-        </RestaurantsContext>
+        </RestaurantsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
