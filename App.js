@@ -16,6 +16,7 @@ import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurant
 import { SafeArea } from "./src/components/utility/safe-area.component";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const TAB_ICON = {
   Restaurants: "restaurant",
@@ -65,25 +66,27 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                ...createScreenOptions({ route }),
-                tabBarActiveTintColor: "tomato",
-                tabBarInactiveTintColor: "gray",
-                headerShown: false,
-                tabBarStyle: {
-                  height: 60,
-                },
-              })}
-            >
-              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-              <Tab.Screen name="Map" component={MapScreen} />
-              <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={({ route }) => ({
+                  ...createScreenOptions({ route }),
+                  tabBarActiveTintColor: "tomato",
+                  tabBarInactiveTintColor: "gray",
+                  headerShown: false,
+                  tabBarStyle: {
+                    height: 60,
+                  },
+                })}
+              >
+                <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+                <Tab.Screen name="Map" component={MapScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
