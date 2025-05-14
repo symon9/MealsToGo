@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import MapView, { Callout, Marker } from "react-native-maps";
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import styled from "styled-components/native";
 
 import { Search } from "../components/search.component";
@@ -31,6 +31,7 @@ export const MapScreen = ({ navigation }) => {
     <>
       <Search />
       <Map
+        provider={PROVIDER_GOOGLE}
         region={{
           latitude: lat,
           longitude: lng,
@@ -43,6 +44,7 @@ export const MapScreen = ({ navigation }) => {
             <Marker
               key={restaurant.name}
               title={restaurant.name}
+              tracksViewChanges={false}
               coordinate={{
                 latitude: restaurant.geometry.location.lat,
                 longitude: restaurant.geometry.location.lng,
