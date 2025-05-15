@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import styled from "styled-components/native";
@@ -39,7 +39,7 @@ export const RestaurantsScreen = ({ navigation }) => {
       )}
       <Search
         isFavouritesToggled={isToggled}
-        onFavouritesToggle={() => setIsToggled(!isToggled)}
+        onFavouritesToggled={() => setIsToggled(!isToggled)}
       />
       {isToggled && (
         <FavouritesBar

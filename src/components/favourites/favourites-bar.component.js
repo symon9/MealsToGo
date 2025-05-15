@@ -17,16 +17,17 @@ export const FavouritesBar = ({ favourites, onNavigate }) => {
 
   return (
     <FavouritesWrapper>
-      <Spacer>
-        <Text>Favourites</Text>
+      <Spacer variant="left.large">
+        <Text variant="caption">Favourites</Text>
       </Spacer>
+      
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {favourites.map((restaurant) => {
           const key = restaurant.name;
           return (
             <Spacer key={key} position="left" size="medium">
               <TouchableOpacity
-                onPress={() => onNavigate("Restaurant", { restaurant })}
+                onPress={() => onNavigate("RestaurantDetail", { restaurant })}
               >
                 <CompactRestaurantInfo restaurant={restaurant} />
               </TouchableOpacity>
