@@ -1,27 +1,18 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import { AccountScreen } from "../../features/account/sccrens/account.screen";
+import { LoginScreen } from "../../features/account/sccrens/login.screen";
+import { RegisterScreen } from "../../features/account/sccrens/register.screen";
+
 const Stack = createStackNavigator();
 
 export const AccountNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ header: false }}>
-      <Stack.Screen
-        name="Main"
-        component={() => (
-          <View>
-            <Text>Account screen</Text>
-          </View>
-        )}
-      />
-      <Stack.Screen
-        name="Login"
-        component={() => (
-          <View>
-            <Text>Login screen</Text>
-          </View>
-        )}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Main" component={AccountScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
     </Stack.Navigator>
   );
 };
