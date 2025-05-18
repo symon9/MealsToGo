@@ -1,7 +1,6 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import { Text } from "react-native";
 
 import { SafeArea } from "../../components/utility/safe-area.component";
@@ -36,22 +35,20 @@ const SettingsScreen = () => {
 
 export const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          ...createScreenOptions({ route }),
-          tabBarActiveTintColor: "tomato",
-          tabBarInactiveTintColor: "gray",
-          headerShown: false,
-          tabBarStyle: {
-            height: 60,
-          },
-        })}
-      >
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        ...createScreenOptions({ route }),
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+        headerShown: false,
+        tabBarStyle: {
+          height: 60,
+        },
+      })}
+    >
+      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 };
