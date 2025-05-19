@@ -17,13 +17,15 @@ export const AuthenticationContextProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch((e) => {
-        setError(e);
+        setError(e.toString());
         setIsLoading(false);
       });
   };
 
   return (
-    <AuthenticationContext.Provider value={{ user, isLoading, error, onLogin }}>
+    <AuthenticationContext.Provider
+      value={{ isAuthenticated: !!user, user, isLoading, error, onLogin }}
+    >
       {children}
     </AuthenticationContext.Provider>
   );
