@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 import {
   AccountBackground,
@@ -16,6 +17,7 @@ import { Text } from "../../../components/typography/text.component";
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const { onLogin, error } = useContext(AuthenticationContext);
 
   return (
@@ -38,7 +40,6 @@ export const LoginScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            secure
             onChangeText={(p) => setPassword(p)}
           />
         </Spacer>
