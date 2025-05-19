@@ -1,13 +1,35 @@
 import React from "react";
 
-import { AccountBackground, AccountCover } from "../components/account.styles";
-import { Text } from "react-native";
+import {
+  AccountBackground,
+  AccountContainer,
+  AccountCover,
+  AuthButton,
+} from "../components/account.styles";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
-export const AccountScreen = () => {
+export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <Text>Account Screen</Text>
+      <AccountContainer>
+        <AuthButton
+          icon="lock-open-outline"
+          mode="contained"
+          onPress={() => navigation.navigate("Login")}
+        >
+          Login
+        </AuthButton>
+        <Spacer size="larger">
+          <AuthButton
+            icon="lock-open-outline"
+            mode="contained"
+            onPress={() => navigation.navigate("Register")}
+          >
+            Register
+          </AuthButton>
+        </Spacer>
+      </AccountContainer>
     </AccountBackground>
   );
 };
