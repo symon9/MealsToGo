@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { Button, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 
 import { Text } from "../../../components/typography/text.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 const ProfileCamera = styled(CameraView)`
   width: 100%;
@@ -34,9 +36,20 @@ const NoPermissionText = styled.Text`
   margin-bottom: ${(props) => props.theme.space[2]};
 `;
 
-export const CameraScreen = () => {
+export const CameraScreen = ({ navigation }) => {
   const [facing, setFacing] = useState("front");
   const [permission, requestPermission] = useCameraPermissions();
+  const cameraRef = React.useRef(null);
+
+  const { user } = useContext(AuthenticationContext);
+
+  const snap = async () => {
+    if (permission.granted) {
+      const photo = await cameraRef.current.takePictureAsync();
+      AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
+      navigation.goBack();
+    }
+  };
 
   if (!permission) {
     return <View />;
@@ -60,12 +73,14 @@ export const CameraScreen = () => {
   }
 
   return (
-    <ProfileCamera facing={facing}>
-      <ButtonContainer>
-        <TouchableButton onPress={toggleCameraFacing}>
-          <Text>Flip Camera</Text>
-        </TouchableButton>
-      </ButtonContainer>
-    </ProfileCamera>
+    <TouchableOpacity onPress={snap}>
+      <ProfileCamera facing={facing} ref={cameraRef}>
+        <ButtonContainer>
+          <TouchableButton onPress={toggleCameraFacing}>
+            <Text>Flip Camera</Text>
+          </TouchableButton>
+        </ButtonContainer>
+      </ProfileCamera>
+    </TouchableOpacity>
   );
 };
